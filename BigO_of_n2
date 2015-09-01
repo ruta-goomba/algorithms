@@ -1,0 +1,28 @@
+// Looping through two arrays
+// case 1 - do arrays a and b have matching entries?
+
+var a = [0,4,5,3,6,4,4,3,6,4,6,4,3,6,2,7,3,5,9,7];
+var b = [2,1,1,6,7,9,7,5,8,5,3,3,4,5,7,7,8,6,3,0];
+for (var i=0; i<a.length; i++){
+    for (var j=0; j<b.length; j++){
+        if (a[i] = b[j]){
+            console.log("Match found!");
+            return true;
+        }
+    }
+}
+console.log("Match not found!");
+return false;
+
+// case 2 - does array a have duplicate entries?
+
+for (var i=0; i<a.length; i++){
+    for (var j=i+1; j<a.length; j++){
+        if (a[i]==a[j]){
+            console.log("Duplicate entry found!");
+            return true;
+        }
+    }
+}
+console.log("No duplicate entries found!");
+return false;
