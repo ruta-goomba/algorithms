@@ -1,0 +1,44 @@
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Quick union algorithm for dynamic connectivity problem (described in detail
+// at http://algs4.cs.princeton.edu/15uf/ )
+
+var id = [];
+
+// create a list of ids for every node in the network; its id
+// will be equal to its position in the array to start with;
+// This is O(n) operation since you are looping through the every node in N
+
+function QuickFindUF(N){
+    for (var i=0; i<N; i++){
+        id[i] = i;
+    }
+}
+
+// find the root of the node; in the worst case scenario you will need to
+// traverse all the items in the array to find the root (if all the components are
+// connected and you are querying one at the bottom of the tree). In that case, this operation
+// is O(n).
+
+function root(i){
+    while (i !== id[i]){
+        i = id[i];
+    }
+    return i;
+}
+
+// check if two nodes are connected; if they are, they will have the same root
+
+function connected(p, q){
+    return root(p) === root(q);
+}
+
+// introduce a new connection between two nodes; get the roots of two nodes;
+// assign the root of one node to become the root of another;
+
+function union(p, q){
+   var i = root(p);
+   var j = root(q);
+   id[i] = j;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////

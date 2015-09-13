@@ -1,0 +1,7 @@
+// Looping through an array
+
+function printItemsInArray(n){
+    for (var i=0; i<n.length; i++){
+        console.log(n[i]);
+    }
+}
