@@ -30,41 +30,5 @@ function findDuplicateEntries(a){
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Quick find algorithm for dynamic connectivity problem (described in detail
-// at http://algs4.cs.princeton.edu/15uf/ )
 
-var id = [];
-
-// create a list of ids for every node in the network; its id
-// will be equal to its position in the array to start with;
-// This is O(n) operation since you are looping through the every node in N
-
-function QuickFindUF(N){
-    for (var i=0; i<N; i++){
-        id[i] = i;
-    }
-}
-
-// check if two nodes are connected; if they are, their ids will be the same
-
-function connected(p, q){
-    return id[p] === id[q];
-}
-
-// introduce a new connection between two nodes; Have to loop through
-// all items in N checking their ids, hence this is also O(n) operation, which
-// makes the overall algorithm O(n^2)
-
-function union(p, q){
-    var pid = id[p];
-    var qid = id[q];
-    for (var i = 0; i < id.length; i++){
-        if (id[i] === pid){
-            id[i] = qid;
-        }
-    }
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
 
