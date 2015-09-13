@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// Union find algorithm for dynamic connectivity problem (described in detail
+// Quick union algorithm for dynamic connectivity problem (described in detail
 // at http://algs4.cs.princeton.edu/15uf/ )
 
 var id = [];
