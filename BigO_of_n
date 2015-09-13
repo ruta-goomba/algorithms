@@ -1,6 +1,7 @@
 // Looping through an array
 
-var n = [0,4,5,3,6,46,4,3,6,43,6,4,3,6,2,7,3,2,1,1,6,7,9,7,5,8,5,3,3,4,5,7,7,86,63,3,0];
-for (var i=0; i<n.length; i++){
-    console.log(n[i]);
+function printItemsInArray(n){
+    for (var i=0; i<n.length; i++){
+        console.log(n[i]);
+    }
 }
