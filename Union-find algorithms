@@ -130,7 +130,7 @@ var WQUPC = (function(){
     var createIdArray = function(N){
         for (var i=0; i<N; i++){
             id[i] = i;
-            sz[i] = 0;
+            sz[i] = 1;
         }
     }
 
