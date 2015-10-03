@@ -112,7 +112,67 @@ var QuickUnion = (function(){
 
 })();
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Weighed quick union algorithm (described in detail
+// at http://algs4.cs.princeton.edu/15uf/ )
 
+var WQU = (function(){
+    var id = [];
+    // array to monitor the size of trees
+    var sz = [];
+
+    // create a list of ids for every node in the network; its id
+    // will be equal to its position in the array to start with;
+    // This is O(n) operation since you are looping through the every node in N
+
+    var createIdArray = function(N){
+        for (var i=0; i<N; i++){
+            id[i] = i;
+            sz[i] = 1;
+        }
+    }
+
+    // find the root of the node;
+
+    var root = function(i){
+        while (i !== id[i]){
+            i = id[i];
+        }
+        return i;
+    }
+
+    // check if two nodes are connected; if they are, they will have the same root
+
+    var connected = function(p, q){
+        return root(p) === root(q);
+    }
+
+    // introduce a new connection between two nodes; get the roots of two nodes;
+    // assign the root of one node to become the root of another;
+
+    var union = function (p, q){
+       var i = root(p);
+       var j = root(q);
+       // changes to introduce the weighing of tree sizes
+       if (i === j){
+        return;
+       }
+       if (sz[i] < sz[j]){
+        id[i] = j;
+        sz[j] += sz[i];
+       } else {
+        id[j] = i;
+        sz[i] += sz[j];
+       }
+    }
+
+     return {
+                createIdArray: createIdArray,
+                connected: connected,
+                union: union
+     };
+
+})();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Weighed quick union algorithm with path compression for dynamic connectivity problem (described in detail
