@@ -36,9 +36,9 @@ LinkedList.prototype.push = function(val){
 
 LinkedList.prototype.shift = function(){
 
-    // if head node is null, the stack is empty
+    // if head node is null, the queue is empty
     if(!this.head){
-      console.log('stack is empty');
+      console.log('queue is empty');
       return;
     }
      else {
@@ -90,9 +90,9 @@ DoublyLinkedList.prototype.push = function(val){
 
 DoublyLinkedList.prototype.shift = function(){
 
-    // if head node is null, the stack is empty
+    // if head node is null, the queue is empty
     if(!this.head){
-      console.log('stack is empty');
+      console.log('queue is empty');
       return;
     }
     // else traverse through the linked list until encounter node with next:null
@@ -107,16 +107,16 @@ DoublyLinkedList.prototype.shift = function(){
 
 // ARRAY IMPLEMENTATION
 
-// create stack
-var stack = [];
+// create a queue
+var queue = [];
 
-// push to stack
-stack.push(1);
-stack.push(2);
+// push to queue
+queue.push(1);
+queue.push(2);
 
-//shift from stack
-stack.shift();
-stack.shift();
+//shift from queue
+queue.shift();
+queue.shift();
 
 
 

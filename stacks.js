@@ -146,12 +146,9 @@ DoublyLinkedList.prototype.pop = function(){
 var stack = [];
 
 // push to stack
-var pushToStack = function(n){
-    stack.push(n);
-}
+stack.push(1);
+stack.push(2);
 
-// pop from stack
-var popFromStack = function(n){
-    var i = stack.pop(n);
-    console.log(i);
-}
+//shift from stack
+stack.pop();
+stack.pop();
