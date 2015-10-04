@@ -1,6 +1,6 @@
 // Implementations of stacks
 
-// LINKED LIST IMPLEMENTATION (code by Cho S. Kim)
+// LINKED LIST IMPLEMENTATION (modified from http://www.thatjsdude.com/interview/linkedList.html)
 // A linked list is a linear data structure where each element is a separate object.
 // Each element (a node) of a list is comprising of two items - the data and a reference to the
 // next node. The last node has a reference of null.
@@ -11,87 +11,134 @@
 // adding nodes to the front of an array, but linked lists perform this operation well. Likewise, arrays
 // are good at finding any node in constant time, but linked lists perform the same operation in linear time.
 
-var makeLinkedList = function() {
+//Singly Linked List
 
-  var instanceOfLinkedList = Object.create(methodsOfLinkedList);
+//one pointer (head) to point the first node of your linked list
+function LinkedList(){
+  this.head = null;
+}
 
-  instanceOfLinkedList.head = null;
+// push to the list
 
-  instanceOfLinkedList.tail = null;
+LinkedList.prototype.push = function(val){
+    // the new node
+    var node = {
+       value: val,
+       next: null
+    }
+    // if head node is null, add the new node to head
+    if(!this.head){
+      this.head = node;
+    }
+    // else traverse through the linked list until encounter node with next:null
+    else{
+      var current = this.head;
+      while(current.next){
+        current = current.next;
+      }
+      // put the new node at the end of the list
+      current.next = node;
+    }
+}
 
-  return instanceOfLinkedList;
-};
+// pop from the list
 
-var methodsOfLinkedList = {
+LinkedList.prototype.pop = function(){
 
-  add: function(value) {
+    // if head node is null, the stack is empty
+    if(!this.head){
+      console.log('stack is empty');
+      return;
+    }
+     else {
+        var current = this.head;
+        var previous = this.head;
+        // if there is one node only
+        if (!current.next){
+        	this.head = null;
+            console.log('removing last node');
+            console.log(current);
+            return;
+        }
+        // if there's more than one node
+        // traverse through the linked list until encounter node with next:null
+        while(current.next){
+           previous = current;
+           current = current.next;
+        }
+        // remove the last node
+        console.log('removing a node');
+        console.log(current);
+        previous.next = null;
+    }
+}
 
-    var newNode = makeNode(value);
+//Doubly Linked List
 
-    /*
-     * If the list is empty,
-     * then assign the new node
-     * as the head of the list.
-     */
-    if (!this.head) {
-     this.head = newNode;
+function DoublyLinkedList(){
+   this.head = null;
+}
+
+// push to the list
+
+DoublyLinkedList.prototype.push = function(val){
+    // the new node
+    var node = {
+       value: val,
+       next: null,
+       previous: null
     }
 
-    /*
-     * If the list contains a
-     * tail, then assign the new
-     * node as the next node in
-     * the list.
-     */
-    if (this.tail) {
-     this.tail.next = newNode;
+    // if head node is null, add the new node to head
+    if(!this.head){
+      this.head = node;
+    }
+    // else traverse through the linked list until encounter node with next:null
+    else{
+        var current = this.head;
+        var previous = this.head;
+        while (current.next){
+            previous = current;
+            current = current.next;
+        }
+        // put the new node at the end of the list
+        current.next = node;
+        // reference the previous node in the new node
+        current.next.previous = current;
     }
 
-    /*
-     * Assigns the new node as the
-     * tail of the list.
-     */
-    this.tail = newNode;
-  },
+}
 
-  remove: function() {
+// pop from the list
 
-    /*
-     * Creates a variable that
-     * references the current
-     * head of a list.
-     */
-    var currentNode = this.head;
+DoublyLinkedList.prototype.pop = function(){
 
-    /*
-     * Assigns the head of the
-     * list to the node next to
-     * the current head.
-     */
-    this.head = currentNode.next;
+    // if head node is null, the stack is empty
+    if(!this.head){
+      console.log('stack is empty');
+      return;
+    }
+    // else traverse through the linked list until encounter node with next:null
+    else {
+        var current = this.head;
+        var previous = this.head;
 
-    /*
-     * Sets the initial head of
-     * the list to null.
-     */
-    currentNode = null;
-  }
-};
-
-
-var makeNode = function(value) {
-  /*
-   * Creates an object with the
-   * two properties of a node.
-   */
-  var instanceOfNode = {
-    data: value,
-    next: null
-  };
-
-  return instanceOfNode;
-};
-
+         // if there is one node only
+        if (!current.next){
+        	this.head = null;
+            console.log('removing last node');
+            console.log(current);
+            return;
+        }
+        while(current.next){
+           previous = current;
+           current = current.next;
+        }
+        console.log('removing a node');
+        console.log(current);
+        previous.next = null;
+    }
+}
 
 // ARRAY IMPLEMENTATION
 
